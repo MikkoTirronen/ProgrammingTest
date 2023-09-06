@@ -14,6 +14,7 @@ const HeaderWrapper = styled.div`
 const Header = styled.h1`
   margin: 0px;
 `;
+const StyledButton = styled.button``;
 
 const Title = styled.h3``;
 
@@ -29,6 +30,14 @@ function PuppiesComponentPage() {
       </HeaderWrapper>
       
 
+        <StyledButton onClick={() => setSearchQuery("All")}> All</StyledButton>
+        <StyledButton onClick={() => setSearchQuery("Red")}> Red</StyledButton>
+        <StyledButton onClick={() => setSearchQuery("Brown")}> Brown</StyledButton>
+        <StyledButton onClick={() => setSearchQuery("Yellow")}> Yellow</StyledButton>
+        <StyledButton onClick={() => setSearchQuery("White")}> White</StyledButton>
+      
+
+      
     </Container>
   );
 }
