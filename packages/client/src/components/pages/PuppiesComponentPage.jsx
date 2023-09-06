@@ -33,10 +33,12 @@ const Card = styled.div`
 `;
 const Title = styled.h3``;
 
-const Description = styled.div``;
+const Description = styled.div`
+padding-top: 10px
+`;
 
 function PuppiesComponentPage() {
- 
+ // Add  nextPage buttons
   const [data, setData] = useState();
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -59,9 +61,9 @@ function PuppiesComponentPage() {
   return (
     <Container>
       <HeaderWrapper>
-        <Header>What is your favorite puppy?</Header>
+        <Header>Which is your favorite puppy?</Header>
       </HeaderWrapper>
-
+<div>Choose a color: </div>
       <StyledButton onClick={() => setSearchQuery("")}> All</StyledButton>
       <StyledButton onClick={() => setSearchQuery("-Red")}> Red</StyledButton>
       <StyledButton onClick={() => setSearchQuery("-Brown")}>
@@ -75,12 +77,17 @@ function PuppiesComponentPage() {
       </StyledButton>
 
       <GridContainer>
+       
         {data &&
           data.map((item) => {
             return (
               <Card>
                 <img src={item.urls.thumb} alt={item.alt_description}></img>
+                Photo by <a href={`${item.user.portfolio}`} >{item.user.name}</a> on <a href="https://unsplash.com/?utm_source=PuppiesApp&utm_medium=referral">Unsplash</a>
+                
+                <Title> Description:</Title>
                 <Description>{item.alt_description}</Description>
+
               </Card>
             );
           })}
