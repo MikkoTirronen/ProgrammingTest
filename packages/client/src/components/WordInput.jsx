@@ -6,7 +6,7 @@ const Container = styled.div``
 const StyledInput =styled.input`
 `
 
-function WordInput({id,name}) {
+function WordInput({name}) {
   return (
     <>
     <label htmlFor={name}> {name}</label>
