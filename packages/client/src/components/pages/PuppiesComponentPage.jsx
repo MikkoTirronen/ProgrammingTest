@@ -15,7 +15,8 @@ const Header = styled.h1`
   margin: 0px;
 `;
 const StyledButton = styled.button`
-width: 10vw;`;
+  width: 10vw;
+`;
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: 3fr 3fr 3fr 3fr;
@@ -34,21 +35,21 @@ const Card = styled.div`
 const Title = styled.h3``;
 
 const Description = styled.div`
-padding-top: 10px
+  padding-top: 10px;
 `;
 
 function PuppiesComponentPage() {
- // Add  nextPage buttons
+  // Add  nextPage buttons
   const [data, setData] = useState();
   const [searchQuery, setSearchQuery] = useState("");
 
   const fetchData = () => {
     fetch(
-      `https://api.unsplash.com/search/photos?client_id=tAawYpyTgnZdE7p_fgV3x9MzdbhXMOsKKB2RHe35S1M&query=puppies-puppy${searchQuery}&per_page=20`
+      `https://api.unsplash.com/search/photos?client_id=tAawYpyTgnZdE7p_fgV3x9MzdbhXMOsKKB2RHe35S1M&query=puppies-puppy${searchQuery}&per_page=20&sort_by=relevance`
     )
       .then((res) => res.json())
       .then((res) => setData(res.results))
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -56,14 +57,12 @@ function PuppiesComponentPage() {
     console.log(data);
   }, [searchQuery]);
 
-  
-
   return (
     <Container>
       <HeaderWrapper>
-        <Header>Which is your favorite puppy?</Header>
+        <Header>Which puppy is your favorite?</Header>
       </HeaderWrapper>
-<div>Choose a color: </div>
+      <div>Choose a color: </div>
       <StyledButton onClick={() => setSearchQuery("")}> All</StyledButton>
       <StyledButton onClick={() => setSearchQuery("-Red")}> Red</StyledButton>
       <StyledButton onClick={() => setSearchQuery("-Brown")}>
@@ -77,17 +76,20 @@ function PuppiesComponentPage() {
       </StyledButton>
 
       <GridContainer>
-       
         {data &&
           data.map((item) => {
             return (
               <Card>
                 <img src={item.urls.thumb} alt={item.alt_description}></img>
-                Photo by <a href={`${item.user.portfolio}`} >{item.user.name}</a> on <a href="https://unsplash.com/?utm_source=PuppiesApp&utm_medium=referral">Unsplash</a>
-                
+                Photo by <a href={`${item.user.portfolio}`}>
+                  {item.user.name}
+                </a>{" "}
+                on{" "}
+                <a href="https://unsplash.com/?utm_source=PuppiesApp&utm_medium=referral">
+                  Unsplash
+                </a>
                 <Title> Description:</Title>
                 <Description>{item.alt_description}</Description>
-
               </Card>
             );
           })}
@@ -97,4 +99,3 @@ function PuppiesComponentPage() {
 }
 
 export default PuppiesComponentPage;
-
