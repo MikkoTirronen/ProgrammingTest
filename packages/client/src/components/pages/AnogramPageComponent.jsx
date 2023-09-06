@@ -28,8 +28,11 @@ export default function AnogramPageComponent() {
   const [wordOne, setWordOne] = useState("Once");
   const [wordTwo, setWordTwo] = useState("eNco");
 
+  //checks if the length of two words are the same
+  const isLengthSame = (wordOne, wordTwo) => {
+    return wordOne.length === wordTwo.length ? true : false;
+  };
 
-  
   return (
     <Container>
       <Header>Anogram Insanity</Header>
