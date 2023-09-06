@@ -36,8 +36,7 @@ const Title = styled.h3``;
 const Description = styled.div``;
 
 function PuppiesComponentPage() {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
+ 
   const [data, setData] = useState();
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -48,7 +47,6 @@ function PuppiesComponentPage() {
       .then((res) => res.json())
       .then((res) => setData(res.results))
       .catch((err) => console.log(err))
-      .finally(setLoading(false));
   };
 
   useEffect(() => {
@@ -86,11 +84,6 @@ function PuppiesComponentPage() {
               </Card>
             );
           })}
-
-        {/* <Card>
-          <img src={item.urls.thumb} alt={item.alt_description}></img>
-          <Description>{item.alt_description}</Description>
-        </Card> */}
       </GridContainer>
     </Container>
   );
