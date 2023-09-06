@@ -9,8 +9,8 @@ const StyledInput =styled.input`
 function WordInput({id,name}) {
   return (
     <>
-    <label for={name}> {name}</label>
-   <StyledInput type={"text"} id={id} name={name}></StyledInput>
+    <label htmlFor={name}> {name}</label>
+   <StyledInput type={"text"} id={name} name={name}></StyledInput>
     </>
   )
 }
