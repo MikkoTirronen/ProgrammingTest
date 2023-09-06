@@ -45,7 +45,11 @@ export default function AnogramPageComponent() {
     return stringOne === stringTwo;
   };
 
-  
+  const handleOnClick = (e) => {
+    e.preventDefault();
+    IsAnogram(wordOne, wordTwo);
+  };
+
   return (
     <Container>
       <Header>Anogram Insanity</Header>
