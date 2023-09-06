@@ -7,6 +7,13 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
 `;
+const HeaderWrapper = styled.div`
+  display: flexbox;
+  text-align: center;
+`;
+const Header = styled.h1`
+  margin: 0px;
+`;
 
 const Title = styled.h3``;
 
@@ -17,7 +24,11 @@ function PuppiesComponentPage() {
  
   return (
     <Container>
+      <HeaderWrapper>
+        <Header>What is your favorite puppy?</Header>
+      </HeaderWrapper>
       
+
     </Container>
   );
 }
