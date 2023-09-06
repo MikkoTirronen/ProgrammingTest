@@ -15,7 +15,20 @@ const Header = styled.h1`
   margin: 0px;
 `;
 const StyledButton = styled.button``;
-
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr 3fr;
+  grid-column-gap: 1vw;
+  margin: 25px;
+`;
+const Card = styled.div`
+  text-align: center;
+  display: block;
+  background: skyblue;
+  border-style: solid;
+  border-color: black;
+  padding: 10px;
+`;
 const Title = styled.h3``;
 
 const Description = styled.div``;
@@ -37,7 +50,12 @@ function PuppiesComponentPage() {
         <StyledButton onClick={() => setSearchQuery("White")}> White</StyledButton>
       
 
-      
+      <GridContainer>
+        <Card>
+          <img src={data.urls.thumb} alt={data.alt_description}></img>
+          <Description>{data.alt_description}</Description>
+        </Card>
+      </GridContainer>
     </Container>
   );
 }
