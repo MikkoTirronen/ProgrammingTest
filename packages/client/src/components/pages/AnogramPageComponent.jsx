@@ -33,6 +33,19 @@ export default function AnogramPageComponent() {
     return wordOne.length === wordTwo.length ? true : false;
   };
 
+  //checks if the words are anograms
+  const IsAnogram = (wordOne, wordTwo) => {
+    //declares constant of an uppercase string of characters that are sorted alphabetically and joined together by commas
+    const stringOne = wordOne.toUpperCase().split("").sort().join();
+    console.log(stringOne);
+    const stringTwo = wordTwo.toUpperCase().split("").sort().join();
+    console.log(stringTwo);
+    console.log(stringOne === stringTwo);
+    //returns if the two strings are the same true or false.
+    return stringOne === stringTwo;
+  };
+
+  
   return (
     <Container>
       <Header>Anogram Insanity</Header>
