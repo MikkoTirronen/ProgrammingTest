@@ -4,6 +4,7 @@ import WordInput from "../WordInput";
 
 const Container = styled.div`
   display: inline-flex;
+
   flex-direction: column;
   background: grey;
   width: 50vw;
@@ -30,12 +31,12 @@ export default function AnogramPageComponent() {
     <Container>
       <Header>Anogram Insanity</Header>
       <BodyContainer>
-        
-        <WordInput name ="wordOne"/>
-<WordInput name ="wordTwo"/>
+        <Instructions>Please enter two words:</Instructions>
+        <WordInput name="wordOne" />
+        <WordInput name="wordTwo" />
 
-<StyledButton>Submit</StyledButton>
+        <StyledButton onClick={handleOnClick}>Submit</StyledButton>
       </BodyContainer>
     </Container>
-  )
+  );
 }
