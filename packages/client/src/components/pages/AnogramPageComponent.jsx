@@ -25,7 +25,10 @@ const Instructions = styled.p`
   text-align: center;
 `;
 export default function AnogramPageComponent() {
-  
+  const [wordOne, setWordOne] = useState("Once");
+  const [wordTwo, setWordTwo] = useState("eNco");
+
+
   
   return (
     <Container>
