@@ -2,23 +2,24 @@
 
 Frontend:
 
-- npm install
+This will install the packages:
   
-This will install the packages.
+- npm install
+
+This will start the client from the root directory:
 
 - npm start -w ./packages/client
   
-This will start the client from the root directory.
-
 Backend:
 
-- docker-compose up
-
-  This will create an sql container with some different password and user values than suggested , see docker-compose file. I forgot to change them after first venturing into the sql database. I ONLY managed to return all the data in the sql database before I ran out of time.
+  This will create an sql container with some different password and user values than suggested , see docker-compose file. I forgot to change them after first venturing into the sql database. I ONLY managed to return all the data in the sql database before I ran out of time:
   
+- docker-compose up
+  
+This should start the backend:
+
 - npm start -w ./packages/server
 
-This should start the backend.
 
 ### Assignment Status:
 The three links at the top of the react app will navigate you to the 3 somewhat functional frontend assigments.
