@@ -76,10 +76,7 @@ export default function AnogramPageComponent() {
   const isAnogram = (wordOne, wordTwo) => {
     //declares constant of an uppercase string of characters that are sorted alphabetically and joined together by commas
     const stringOne = wordOne.toUpperCase().split("").sort().join();
-    console.log(stringOne);
     const stringTwo = wordTwo.toUpperCase().split("").sort().join();
-    console.log(stringTwo);
-    console.log(stringOne === stringTwo);
     //returns if the two strings are the same true or false.
     return stringOne === stringTwo;
   };
