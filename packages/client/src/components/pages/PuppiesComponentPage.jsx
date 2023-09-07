@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
+import NavigationComponent from "../NavigationComponent";
 
 const Container = styled.div`
-  display: flexbox;
+  display: inline-flexbox;
   background: darkgrey;
   width: 100vw;
   height: 100%;
@@ -14,8 +15,19 @@ const HeaderWrapper = styled.div`
 const Header = styled.h1`
   margin: 0px;
 `;
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  font-size: larger;
+  font-weight: 600;
+`;
 const StyledButton = styled.button`
   width: 10vw;
+  margin-left: 10px;
+  height: 35px;
+  font-size: larger;
+  font-weight: 400;
 `;
 const GridContainer = styled.div`
   display: grid;
@@ -32,20 +44,23 @@ const Card = styled.div`
   border-color: black;
   padding: 10px;
 `;
-const Title = styled.h3``;
+const Title = styled.h3`
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+`;
 
 const Description = styled.div`
   padding-top: 10px;
 `;
 
-function PuppiesComponentPage() {
-  // Add  nextPage buttons
+export default function PuppiesComponentPage() {
   const [data, setData] = useState();
+  const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
 
   const fetchData = () => {
     fetch(
-      `https://api.unsplash.com/search/photos?client_id=tAawYpyTgnZdE7p_fgV3x9MzdbhXMOsKKB2RHe35S1M&query=puppies-puppy${searchQuery}&per_page=20&sort_by=relevance`
+      `https://api.unsplash.com/search/photos?client_id=tAawYpyTgnZdE7p_fgV3x9MzdbhXMOsKKB2RHe35S1M&query=puppies-puppy${searchQuery}${`&page=${page}`}&per_page=20`
     )
       .then((res) => res.json())
       .then((res) => setData(res.results))
@@ -55,39 +70,79 @@ function PuppiesComponentPage() {
   useEffect(() => {
     fetchData();
     console.log(data);
-  }, [searchQuery]);
+  }, [searchQuery, page]);
 
   return (
     <Container>
+      <NavigationComponent />
       <HeaderWrapper>
         <Header>Which puppy is your favorite?</Header>
       </HeaderWrapper>
-      <div>Choose a color: </div>
-      <StyledButton onClick={() => setSearchQuery("")}> All</StyledButton>
-      <StyledButton onClick={() => setSearchQuery("-Red")}> Red</StyledButton>
-      <StyledButton onClick={() => setSearchQuery("-Brown")}>
-        Brown
-      </StyledButton>
-      <StyledButton onClick={() => setSearchQuery("-Yellow")}>
-        Yellow
-      </StyledButton>
-      <StyledButton onClick={() => setSearchQuery("-White")}>
-        White
-      </StyledButton>
+      <ButtonWrapper>
+        <p>Choose a color: </p>
+        <StyledButton
+          onClick={() => {
+            setSearchQuery("");
+            setPage(1);
+          }}
+        >
+          {" "}
+          All
+        </StyledButton>
+        <StyledButton
+          onClick={() => {
+            setSearchQuery("red");
+            setPage(1);
+          }}
+        >
+          {" "}
+          Red
+        </StyledButton>
+        <StyledButton
+          onClick={() => {
+            setSearchQuery("black");
+            setPage(1);
+          }}
+        >
+          Brown
+        </StyledButton>
+        <StyledButton
+          onClick={() => {
+            setSearchQuery("yellow");
+            setPage(1);
+          }}
+        >
+          Yellow
+        </StyledButton>
+        <StyledButton
+          onClick={() => {
+            setSearchQuery("white");
+            setPage(1);
+          }}
+        >
+          White
+        </StyledButton>
+        <StyledButton onClick={() => setPage(page - 1)}>Prev</StyledButton>
+        <StyledButton onClick={() => setPage(page + 1)}>Next</StyledButton>
+      </ButtonWrapper>
 
       <GridContainer>
         {data &&
-          data.map((item) => {
+          data.map((item, index) => {
             return (
-              <Card>
-                <img src={item.urls.thumb} alt={item.alt_description}></img>
-                Photo by <a href={`${item.user.portfolio}`}>
-                  {item.user.name}
-                </a>{" "}
-                on{" "}
-                <a href="https://unsplash.com/?utm_source=PuppiesApp&utm_medium=referral">
-                  Unsplash
-                </a>
+              <Card key={index}>
+                <img
+                  src={`${item.urls.raw}&fm=jpg&w=400&h=300&fit=max`}
+                  alt={item.alt_description}
+                  width="100%"
+                ></img>
+                <p>
+                  Photo by{" "}
+                  <a href={`${item.user.links.html}`}>{item.user.name}</a> on{" "}
+                  <a href="https://unsplash.com/?utm_source=PuppiesApp&utm_medium=referral">
+                    Unsplash
+                  </a>
+                </p>
                 <Title> Description:</Title>
                 <Description>{item.alt_description}</Description>
               </Card>
@@ -97,5 +152,3 @@ function PuppiesComponentPage() {
     </Container>
   );
 }
-
-export default PuppiesComponentPage;
